@@ -1,0 +1,41 @@
+{% extends "DiaryApp/base.html"%}
+{% load crispy_forms_tags %}
+
+{%block title%}Create Diary{%endblock%}
+
+{% block navbar %}
+    <ul class="navbar-nav ml-auto">
+        &nbsp;     &nbsp;     &nbsp; 
+
+        <li class="nav-link">          
+            <a class="nav-link" type="button"  href="{% url 'dashboard' %}">Dashboard</a>
+        </li>
+        &nbsp;     &nbsp;     &nbsp; 
+        
+        <li class="nav-link">          
+            <a class="nav-link" type="button"  href="{% url 'create-diary' %}">Create Diary</a>
+        </li>
+        &nbsp;     &nbsp;     &nbsp; 
+
+        <li class="nav-link">          
+            <a class="nav-link" type="button"  href="{% url 'view-diary' %}">View Diary</a>
+        </li>
+        &nbsp;     &nbsp;     &nbsp; 
+    </ul>
+{%endblock%}
+
+{%block content%}
+    <br>
+    <div class="container bg-white shadow-md p-5 form-layout"> 
+        <h3>Create a diary</h3>
+        <br>
+        <form method="POST" autocomplete="off">
+            {% csrf_token %}
+            {{CreateDiaryForm | crispy}}
+            <br>
+            <br>
+            <button class="btn btn-outline-primary btn-md w-100 btn-block p-3"type="submit"> Create Diary</button>
+          </form>
+          <br>
+    </div>
+{%endblock%}

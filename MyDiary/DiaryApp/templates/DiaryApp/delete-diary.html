@@ -1,0 +1,46 @@
+{% extends "DiaryApp/base.html"%}
+
+
+{%block title%}Dashboard{%endblock%}
+
+{% block navbar %}
+    <ul class="navbar-nav ml-auto">
+        &nbsp;     &nbsp;     &nbsp; 
+
+        <li class="nav-link">          
+            <a class="nav-link" type="button"  href="{% url 'dashboard' %}">Dashboard</a>
+        </li>
+        &nbsp;     &nbsp;     &nbsp; 
+        
+        <li class="nav-link">          
+            <a class="nav-link" type="button"  href="{% url 'create-diary' %}">Create Diary</a>
+        </li>
+        &nbsp;     &nbsp;     &nbsp; 
+
+        <li class="nav-link">          
+            <a class="nav-link" type="button"  href="{% url 'view-diary' %}">View Diary</a>
+        </li>
+        &nbsp;     &nbsp;     &nbsp; 
+    </ul>
+{%endblock%}
+
+{%block content%}
+    <br>
+    <div class="container bg-white shadow-md p-5 form-layout"> 
+        <h3>Delete a diary</h3>
+        <p>Are you sure?</p>
+        <br>
+        <form method="POST" autocomplete="off">
+            {% csrf_token %}
+
+            <br>
+            <button class="btn btn-outline-primary btn-md w-100 btn-block p-3"type="submit"> Delete Diary</button>
+          </form>
+          <br>
+          <div class="text-center">
+            <a href="{% url 'view-diary' %}">Return to diary</a>
+          </div>
+          
+         
+    </div>
+{%endblock%}

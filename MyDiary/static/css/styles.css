@@ -1,0 +1,16 @@
+.form-layout{
+    border-radius: 20px;
+    width: 500px;
+}
+
+.message-text{
+    color: white;
+}
+
+.date-right {
+    float: right;
+}
+
+.justified {
+    text-align: justify;
+}

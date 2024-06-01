@@ -1,0 +1,35 @@
+{% extends "DiaryApp/base.html"%}
+{% load crispy_forms_tags %}
+
+{%block title%} Login {%endblock%}
+
+
+{%block content%}
+  <br>
+    <div class="container bg-white shadow-md p-5 form-layout">
+      <h3>Login to your account</h3>  
+      <br>
+
+      {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+          <p id="message-timer" class="alert alert-success float-center text-center message-text"> 
+            {{message}} 
+          </p>
+        {% endif %}
+      {% endfor %}
+
+      <form method="POST" autocomplete="off">
+        {% csrf_token %}
+        {{LoginForm | crispy}}
+        <br>
+        <br>
+        <button class="btn btn-outline-primary btn-md w-100 btn-block p-3"type="submit"> Login</button>
+      </form>
+      <br>
+      
+      <div class="text-center">
+        <a href="{% url 'sign-up' %}">Don't have an account?</a>
+      </div>
+    </div>
+  <br>
+{%endblock%}

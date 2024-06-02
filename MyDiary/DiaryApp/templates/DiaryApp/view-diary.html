@@ -25,27 +25,31 @@
 {%endblock%}
 
 {%block content%}
-    <br>
     {% if AllDiaryForm %}
         {% for diary in AllDiaryForm %}
-            <div class="container bg-white shadow-md p-5 form-layout"> 
-                <h2>{{ diary.title }}</h2>
-                <p class="justified">{{ diary.content }}</p>
-                <p class="date-right">{{ diary.date_post }}</p>
-                <!-- <p>{{ diary.user }}</p> -->
-                <br>
-                <a href="{% url 'update-diary' diary.id %}"> Update </a>
-                &nbsp;     &nbsp;     &nbsp; 
-                <a href="{% url 'delete-diary' diary.id %}"> Delete </a>
+            <div class="d-flex justify-content-center p-3 align-items-center" >
+                <div class="card border-secondary " style="max-width: 35rem;">
+                    <div class="card-header" >{{ diary.date_post }}</div>
+                        <div class="card-body">
+                            <h4 class="card-title">{{ diary.title }}</h4>
+                            <p class="card-text"  style="text-align: justify;">{{ diary.content }}</p>
+                            <div class="date-right">
+                                <a href="{% url 'update-diary' diary.id %}"> Update </a>
+                                &nbsp;     &nbsp;     &nbsp; 
+                                <a href="{% url 'delete-diary' diary.id %}"> Delete </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <br>
         {%endfor%}
-
     {% else %}
-        <div class="container bg-white shadow-md p-5 form-layout"> 
+        <div class="container shadow-md p-5 form-layout"> 
             <h2> No diary entries found</h2>
             <p>It seems you haven't added any diary entries yet. Why not <a href="{% url 'create-diary' %}">add one</a> now?</p>
         </div>
     {%endif%}
+
+
 
 {%endblock%}

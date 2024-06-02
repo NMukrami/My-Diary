@@ -25,17 +25,21 @@
 {%endblock%}
 
 {%block content%}
-    <br>
-    <div class="container bg-white shadow-md p-5 form-layout"> 
-        <h3>Create a diary</h3>
-        <br>
-        <form method="POST" autocomplete="off">
-            {% csrf_token %}
-            {{CreateDiaryForm | crispy}}
-            <br>
-            <br>
-            <button class="btn btn-outline-primary btn-md w-100 btn-block p-3"type="submit"> Create Diary</button>
-          </form>
-          <br>
-    </div>
+    <div class="d-flex justify-content-center align-items-center mt-3" >
+
+        <div class="card text-white bg-secondary mb-3 " style="max-width: 35rem;">
+            <div class="container shadow-md p-4 form-layout"> 
+                <h3>Create a diary</h3>
+                
+                <form method="POST" autocomplete="off">
+                    {% csrf_token %}
+                    {{CreateDiaryForm | crispy}}
+                   
+                    <button class="btn btn-primary btn-md w-100 btn-block mt-3"type="submit"> Create Diary</button>
+                </form>
+                
+                
+            </div>
+        </div>
+    </div>        
 {%endblock%}

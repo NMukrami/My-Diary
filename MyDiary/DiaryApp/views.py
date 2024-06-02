@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.models import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
-from . forms import CreateUserForm, LoginForm, DiaryForm
+from . forms import CreateUserForm, LoginForm, CreateDiaryForm
 from . models import Diary
 
 
@@ -52,9 +52,9 @@ def dashborad(request):
 
 @login_required(login_url="login")
 def create_diary(request):
-    form = DiaryForm()
+    form = CreateDiaryForm()
     if request.method == "POST":
-        form = DiaryForm(request.POST)
+        form = CreateDiaryForm(request.POST)
         if form.is_valid():
             diary = form.save(commit=False)
             diary.user = request.user
@@ -68,7 +68,7 @@ def create_diary(request):
 @login_required(login_url="login")
 def view_diary(request):
     userID = request.user.id
-    diary = Diary.objects.all().filter(user=userID)
+    diary = Diary.objects.filter(user=userID).order_by('-date_post')
 
     context = {"AllDiaryForm": diary }
     return render(request, "DiaryApp/view-diary.html", context)
@@ -80,9 +80,9 @@ def update_diary(request, pk):
     try:
         diary = Diary.objects.get(id=pk, user=request.user)# check id and user matched the current user
 
-        form = DiaryForm(instance=diary)
+        form = CreateDiaryForm(instance=diary)
         if request.method == "POST":
-            form = DiaryForm(request.POST, instance=diary)
+            form = CreateDiaryForm(request.POST, instance=diary)
 
             if form.is_valid():
                 form.save()

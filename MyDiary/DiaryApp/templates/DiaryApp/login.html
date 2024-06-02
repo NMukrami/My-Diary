@@ -5,31 +5,33 @@
 
 
 {%block content%}
-  <br>
-    <div class="container bg-white shadow-md p-5 form-layout">
-      <h3>Login to your account</h3>  
-      <br>
+  <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
 
-      {% for message in messages %}
-        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-          <p id="message-timer" class="alert alert-success float-center text-center message-text"> 
-            {{message}} 
-          </p>
-        {% endif %}
-      {% endfor %}
+    <div class="card text-white bg-secondary mb-3 " style="max-width: 200rem;">
 
-      <form method="POST" autocomplete="off">
-        {% csrf_token %}
-        {{LoginForm | crispy}}
-        <br>
-        <br>
-        <button class="btn btn-outline-primary btn-md w-100 btn-block p-3"type="submit"> Login</button>
-      </form>
-      <br>
-      
-      <div class="text-center">
-        <a href="{% url 'sign-up' %}">Don't have an account?</a>
+      <div class="container shadow-md p-4 form-layout">
+        <h3>Login to your account</h3>  
+        {% for message in messages %}
+          {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            <p id="message-timer" class="alert alert-success float-center text-center message-text"> 
+              {{message}} 
+            </p>
+          {% endif %}
+        {% endfor %}
+
+        <form method="POST" autocomplete="off">
+          {% csrf_token %}
+          {{LoginForm | crispy}}
+          <button class="btn btn-primary btn-md w-100 btn-block "type="submit"> Login</button>
+        </form>
+        
+        <div class="text-center mt-2">
+          <a href="{% url 'sign-up' %}">Don't have an account?</a>
+        </div>
+        
       </div>
+      
     </div>
-  <br>
+  </div>
+
 {%endblock%}

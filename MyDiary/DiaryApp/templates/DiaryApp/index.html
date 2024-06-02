@@ -3,13 +3,37 @@
 {% block title%}Home{% endblock%}
 
 {% block content %}
-  <br>
-  <br>
-  <div class="text-center">
-      <h2> My Diary homepage. </h2>
-      <br>
-      <a class="btn btn-primary" type="button"  href="{% url 'sign-up' %}">Sign Up</a>
+<div class="d-flex justify-content-center align-items-center" style="min-height: 90vh;">
+  <div class="card text-white bg-secondary p-4" style="max-width: 100rem;">
+      <header class="text-center">
+          <h1>Welcome to My Diary</h1>
+      </header>
+
+      <main>
+          <section class="text-center">
+              <p>Thank you for visiting <strong>My Diary</strong>, your personal space to write, edit, and cherish your thoughts and experiences.</p>
+              <p>We understand how important your privacy is, which is why we've built a secure platform for you to freely express yourself.</p>
+          </section>
+          <section class="text-center mt-4">
+              <h2>Features</h2>
+              
+                <p><strong>User Authentication:</strong> Securely create an account and log in to access your diary.</p>
+                <p><strong>Create Entries:</strong> Write new diary entries whenever inspiration strikes.</p>
+                <p><strong>Edit Entries:</strong> Update your entries to reflect new thoughts and perspectives.</p>
+                <p> <strong>Delete Entries:</strong> Remove any entries you no longer want to keep.</p>
+          </section>
+          <section class="text-center mt-4">
+              <h2>Getting Started</h2>
+              <p>To start using <strong>My Diary</strong>, simply <a href="{% url 'sign-up' %}">create an account</a> and <a href="{% url 'login' %}">log in</a>. Once logged in, you can begin adding your diary entries right away.</p>
+          </section>
+      </main>
+
+      <footer class="text-center mt-2 ">
+          <p>&copy; 2024 My Diary. All rights reserved.</p>
+      </footer>     
   </div>
+</div>
+
 {% endblock%}
 
 

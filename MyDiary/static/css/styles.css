@@ -14,3 +14,9 @@
 .justified {
     text-align: justify;
 }
+
+footer {
+    text-align: center;
+    margin-top: auto;
+    color: #777777;
+}

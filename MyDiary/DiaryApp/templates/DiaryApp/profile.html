@@ -1,7 +1,7 @@
 {% extends "DiaryApp/base.html"%}
 {% load crispy_forms_tags %}
 
-{%block title%}Create Diary{%endblock%}
+{%block title%}Profile{%endblock%}
 
 {% block navbar %}
     <ul class="navbar-nav ml-auto">
@@ -34,17 +34,30 @@
 
         <div class="card text-white bg-secondary mb-3 " style="max-width: 35rem;">
             <div class="container shadow-md p-4 form-layout"> 
-                <h3>Create a diary</h3>
+                <h3>Profile Details</h3>
+                <br>
+                <p>Change user information here:</p>
+
                 
                 <form method="POST" autocomplete="off">
                     {% csrf_token %}
-                    {{CreateDiaryForm | crispy}}
+                    {{ProfileForm | crispy}}
                    
-                    <button class="btn btn-primary btn-md w-100 btn-block mt-3"type="submit"> Create Diary</button>
+                    <button class="btn btn-primary btn-md w-100 btn-block mt-3"type="submit"> Update </button>
                 </form>
-                
-                
             </div>
         </div>
-    </div>        
+    </div>   
+
+    <div class="d-flex justify-content-center align-items-center mt-3" >
+        <div class="card text-white bg-secondary mb-3 " style="max-width: 35rem;">
+
+            <div class="container shadow-md p-4 form-layout"> 
+                <h3>Delete account</h3>
+                <a   href="{% url 'delete-account' %}">Delete your account</a>
+            </div>
+
+        </div>
+    </div>     
+
 {%endblock%}

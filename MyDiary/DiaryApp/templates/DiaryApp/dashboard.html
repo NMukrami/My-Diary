@@ -21,11 +21,16 @@
             <a class="nav-link" type="button"  href="{% url 'view-diary' %}">View Diary</a>
         </li>
         &nbsp;     &nbsp;     &nbsp; 
+
+        <li class="nav-link">          
+            <a class="nav-link" type="button"  href="{% url 'profile' %}">My Profile</a>
+        </li>
+        &nbsp;     &nbsp;     &nbsp; 
     </ul>
 {%endblock%}
 
 {%block content%}
-    <div class="d-flex justify-content-center align-items-center" style="height: 50vh;">
+    <div class="d-flex justify-content-center align-items-center p-3">
         <div class="card text-white bg-secondary mb-3 " style="max-width: 200rem;">
             <div class="container  shadow-md p-5 form-layout"> 
                 <h1>Dashboard</h1>

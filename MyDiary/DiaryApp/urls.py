@@ -15,4 +15,8 @@ urlpatterns = [
     path("update-diary/<str:pk>", views.update_diary, name="update-diary"),
 
     path("delete-diary/<str:pk>", views.delete_diary, name="delete-diary"),
+
+    path("profile", views.profile, name="profile"),
+
+    path("delete-account", views.delete_account, name="delete-account"),
 ]

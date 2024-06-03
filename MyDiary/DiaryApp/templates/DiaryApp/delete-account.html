@@ -1,7 +1,7 @@
 {% extends "DiaryApp/base.html"%}
-{% load crispy_forms_tags %}
 
-{%block title%}Create Diary{%endblock%}
+
+{%block title%}Delete{%endblock%}
 
 {% block navbar %}
     <ul class="navbar-nav ml-auto">
@@ -26,7 +26,7 @@
             <a class="nav-link" type="button"  href="{% url 'profile' %}">My Profile</a>
         </li>
         &nbsp;     &nbsp;     &nbsp; 
-    </ul>
+    </ul> 
 {%endblock%}
 
 {%block content%}
@@ -34,17 +34,23 @@
 
         <div class="card text-white bg-secondary mb-3 " style="max-width: 35rem;">
             <div class="container shadow-md p-4 form-layout"> 
-                <h3>Create a diary</h3>
+                <h3>Delete Account</h3>
+                <p>Deleting your account will remove all of your information from our database. This cannot be undone</p>
                 
                 <form method="POST" autocomplete="off">
                     {% csrf_token %}
-                    {{CreateDiaryForm | crispy}}
-                   
-                    <button class="btn btn-primary btn-md w-100 btn-block mt-3"type="submit"> Create Diary</button>
+
+                    <button class="btn btn-primary btn-md w-100 btn-block mt-3"type="submit">Yes, I want to delete my account </button>
                 </form>
-                
+                <br>
+                <div class="text-center mt-2">
+                    <a href="{% url 'profile' %}">return to profile managment</a>
+                </div>
                 
             </div>
         </div>
-    </div>        
+    </div>   
+
+ 
+
 {%endblock%}

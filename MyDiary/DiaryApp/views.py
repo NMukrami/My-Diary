@@ -3,7 +3,8 @@ from django.contrib import messages
 from django.contrib.auth.models import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
-from . forms import CreateUserForm, LoginForm, CreateDiaryForm
+from django.contrib.auth.models import User
+from . forms import CreateUserForm, CreateLoginForm, CreateDiaryForm, UpdateUserForm
 from . models import Diary
 
 
@@ -25,9 +26,9 @@ def sign_up(request):
 
 
 def login(request):
-    form = LoginForm()
+    form = CreateLoginForm()
     if request.method == "POST":
-        form = LoginForm(request, data=request.POST)
+        form = CreateLoginForm(request, data=request.POST)
         if form.is_valid():
             username = request.POST.get("username")
             password = request.POST.get("password")
@@ -108,5 +109,26 @@ def delete_diary(request, pk):
     except:
         return redirect("view-diary")
     
+
+@login_required(login_url="login")
+def profile(request):
+    form = UpdateUserForm(instance=request.user) #user login information
+
+    if request.method == "POST":
+        form = UpdateUserForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect("dashboard")
+
+    context = {"ProfileForm": form}
+    return render(request, "DiaryApp/profile.html", context)
     
     
+@login_required(login_url="login")
+def delete_account(request):
+    if request.method == "POST":
+        user_account = User.objects.get(username=request.user)
+        user_account.delete()
+        return redirect("")
+
+    return render(request, "DiaryApp/delete-account.html")

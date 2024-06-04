@@ -30,12 +30,21 @@
 {%endblock%}
 
 {%block content%}
-    <div class="d-flex justify-content-center align-items-center p-3">
-        <div class="card text-white bg-secondary mb-3 " style="max-width: 200rem;">
-            <div class="container  shadow-md p-5 form-layout"> 
-                <h1>Dashboard</h1>
-                {{user}}
-                <br>
-                <a href="{% url 'logout' %}">Logout</a> 
+<div class="d-flex justify-content-center align-items-center p-3">
+    <div class="card text-white bg-secondary mb-3" style="max-width: 200rem;">
+        <div class="container shadow-md p-5 form-layout">
+            <h1>Dashboard</h1>
+            <div class="row align-items-center">
+                <div class="col-auto">
+                    <img style="width: 180px;" src="{{ProfilePicture.profile_picture.url}}" alt="profile picture">
+                </div>
+                <div class="col">
+                    <h2>{{user}}</h2>
+                </div>
             </div>
+        </div>
+    </div>
+</div>
+
+    
 {%endblock%}

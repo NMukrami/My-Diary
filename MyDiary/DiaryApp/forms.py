@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django import forms
 from django.forms.widgets import PasswordInput, TextInput
 from django.forms import ModelForm
-from . models import Diary
+from . models import Diary, Profile
 
 
 class CreateDiaryForm(ModelForm):
@@ -20,16 +20,24 @@ class CreateDiaryForm(ModelForm):
 class CreateUserForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ["username", "email", "password1", "password2"]
+        fields = ["first_name", "last_name", "email", "username", "password1", "password2",]
+# tambah last name and first name
 
 class UpdateUserForm(forms.ModelForm):
     password = None
     
     class Meta:
         model = User
-        fields = ["username", "email"]
+        fields = ["first_name", "last_name","email"]
         exclude = ["password1", "password2"]
 
 class CreateLoginForm(AuthenticationForm):
     username = forms.CharField(widget=TextInput())
     password = forms.CharField(widget=PasswordInput())
+
+class UpdateProfileForm(forms.ModelForm):
+    profile_pictute = forms.ImageField(widget=forms.FileInput(attrs={"class": "form-control-file"}))
+
+    class Meta:
+        model = Profile
+        fields = ["profile_pictute"]

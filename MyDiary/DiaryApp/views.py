@@ -4,8 +4,9 @@ from django.contrib.auth.models import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from . forms import CreateUserForm, CreateLoginForm, CreateDiaryForm, UpdateUserForm
-from . models import Diary
+
+from . forms import CreateUserForm, CreateLoginForm, CreateDiaryForm, UpdateUserForm, UpdateProfileForm
+from . models import Diary, Profile
 
 
 def homepage(request):
@@ -17,7 +18,11 @@ def sign_up(request):
     if request.method == "POST":
         form = CreateUserForm(request.POST)
         if form.is_valid():
+            user = form.save(commit=False)
+
             form.save()
+            profile = Profile.objects.create(user=user)
+
             messages.success(request, "User created!")
             return redirect("login")
         
@@ -48,7 +53,9 @@ def logout(request):
 
 @login_required(login_url="login")
 def dashborad(request):
-    return render(request, "DiaryApp/dashboard.html")
+    profile_picture = Profile.objects.get(user=request.user)
+    context = {"ProfilePicture": profile_picture}
+    return render(request, "DiaryApp/dashboard.html",context)
 
 
 @login_required(login_url="login")
@@ -69,7 +76,7 @@ def create_diary(request):
 @login_required(login_url="login")
 def view_diary(request):
     userID = request.user.id
-    diary = Diary.objects.filter(user=userID).order_by('-date_post')
+    diary = Diary.objects.filter(user=userID).order_by('-created_at')
 
     context = {"AllDiaryForm": diary }
     return render(request, "DiaryApp/view-diary.html", context)
@@ -132,3 +139,5 @@ def delete_account(request):
         return redirect("")
 
     return render(request, "DiaryApp/delete-account.html")
+
+

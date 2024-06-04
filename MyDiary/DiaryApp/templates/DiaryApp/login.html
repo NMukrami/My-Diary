@@ -5,11 +5,17 @@
 
 
 {%block content%}
-  <div class="d-flex justify-content-center align-items-center p-5" >
+
+
+  <div class="d-flex justify-content-center align-items-center p-2" style="min-height: 10vh;" >
+    
 
     <div class="card text-white bg-secondary mb-3 " style="max-width: 200rem;">
 
+      
       <div class="container shadow-md p-4 form-layout">
+        
+        
         <h3>Login to your account</h3>  
         {% for message in messages %}
           {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
@@ -35,3 +41,11 @@
   </div>
 
 {%endblock%}
+
+<!-- 
+<div  class="d-flex justify-content-center align-items-center p-2"  >
+  <div id="message-timer" class="alert alert-dismissible alert-success">
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    <strong>Well done!</strong> Your account successfully created
+  </div>
+</div> -->

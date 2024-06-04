@@ -1,6 +1,5 @@
-var message_timeout = document.getElementsById("message-timer")
+var message_timeout = document.getElementById("message-timer");
 
 setTimeout(function(){
-        message_timeout.style.display = "none";
-    },  5000
-);
+    message_timeout.style.display = "none";
+}, 5000);

@@ -36,11 +36,12 @@
             <h1>Dashboard</h1>
             <div class="row align-items-center">
                 <div class="col-auto">
-                    <img style="width: 180px;" src="{{ProfilePicture.profile_picture.url}}" alt="profile picture">
+                    <img style="width: 180px;" src="{{profilePic.profile_picture.url}}" >
                 </div>
                 <div class="col">
                     <h2>{{user}}</h2>
                 </div>
+                <a href="{% url 'logout'%}">Logout</a>
             </div>
         </div>
     </div>

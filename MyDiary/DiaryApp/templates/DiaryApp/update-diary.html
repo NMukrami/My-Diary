@@ -34,7 +34,7 @@
             <form method="POST" autocomplete="off">
                 {% csrf_token %}
                 {{UpdateDiary | crispy}}
-             
+                
                 <button class="btn btn-primary btn-md w-100 btn-block p-3"type="submit"> Update diary</button>
             </form>
          

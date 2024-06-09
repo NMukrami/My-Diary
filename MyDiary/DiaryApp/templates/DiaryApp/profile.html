@@ -29,35 +29,47 @@
     </ul>
 {%endblock%}
 
-{%block content%}
-    <div class="d-flex justify-content-center align-items-center mt-3" >
-
-        <div class="card text-white bg-secondary mb-3 " style="max-width: 35rem;">
-            <div class="container shadow-md p-4 form-layout"> 
+{% block content %}
+    <div class="d-flex justify-content-center align-items-center mt-3">
+        <div class="card text-white bg-secondary mb-3" style="max-width: 35rem;">
+            <div class="container shadow-md p-4 form-layout">
                 <h3>Profile Details</h3>
                 <br>
                 <p>Change user information here:</p>
-
-                
                 <form method="POST" autocomplete="off">
                     {% csrf_token %}
-                    {{ProfileForm | crispy}}
-                   
-                    <button class="btn btn-primary btn-md w-100 btn-block mt-3"type="submit"> Update </button>
+                    {{ user_form | crispy }}
+                    <input type="hidden" name="user_form" value="user_form">
+                     <!-- Hidden input to identify user form submission -->
+                    <button class="btn btn-primary btn-md w-100 btn-block mt-3" type="submit">Update</button>
                 </form>
             </div>
         </div>
-    </div>   
+    </div>
 
-    <div class="d-flex justify-content-center align-items-center mt-3" >
-        <div class="card text-white bg-secondary mb-3 " style="max-width: 35rem;">
-
-            <div class="container shadow-md p-4 form-layout"> 
-                <h3>Delete account</h3>
-                <a   href="{% url 'delete-account' %}">Delete your account</a>
+    <div class="d-flex justify-content-center align-items-center mt-3">
+        <div class="card text-white bg-secondary mb-3" style="max-width: 35rem;">
+            <div class="container shadow-md p-4 form-layout">
+                <h3>Profile pic</h3>
+                <br>
+                <p>Change pic</p>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ profile_form | crispy }}
+                     <!-- Hidden input to identify user form submission -->
+                    <input type="hidden" name="profile_form" value="profile_form">
+                    <button class="btn btn-primary btn-md w-100 btn-block mt-3" type="submit">Upload pic</button>
+                </form>
             </div>
-
         </div>
-    </div>     
+    </div>
 
-{%endblock%}
+    <div class="d-flex justify-content-center align-items-center mt-3">
+        <div class="card text-white bg-secondary mb-3" style="max-width: 35rem;">
+            <div class="container shadow-md p-4 form-layout">
+                <h3>Delete account</h3>
+                <a href="{% url 'delete-account' %}">Delete your account</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

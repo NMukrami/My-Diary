@@ -53,8 +53,8 @@ def logout(request):
 
 @login_required(login_url="login")
 def dashborad(request):
-    profile_picture = Profile.objects.get(user=request.user)
-    context = {"ProfilePicture": profile_picture}
+    profile_pic = Profile.objects.get(user=request.user)
+    context = {"profilePic": profile_pic}
     return render(request, "DiaryApp/dashboard.html",context)
 
 
@@ -119,15 +119,31 @@ def delete_diary(request, pk):
 
 @login_required(login_url="login")
 def profile(request):
-    form = UpdateUserForm(instance=request.user) #user login information
+     # Initialize the forms with the current user's data
+    user_form = UpdateUserForm(instance=request.user)
+    profile = Profile.objects.get(user=request.user)
+    profile_form = UpdateProfileForm(instance=profile)
 
     if request.method == "POST":
-        form = UpdateUserForm(request.POST, instance=request.user)
-        if form.is_valid():
-            form.save()
-            return redirect("dashboard")
-
-    context = {"ProfileForm": form}
+        # Check if the user form was submitted
+        if 'user_form' in request.POST:
+            user_form = UpdateUserForm(request.POST, instance=request.user)
+            if user_form.is_valid():
+                user_form.save()
+                return redirect("dashboard")
+            
+        # Check if the profile form was submitted
+        if 'profile_form' in request.POST:
+            profile_form = UpdateProfileForm(request.POST, request.FILES, instance=profile)
+            if profile_form.is_valid():
+                 # Save the updated profile picture, which will trigger the model's save method to delete the old picture
+                profile_form.save()
+                return redirect("dashboard")
+        else:
+            print(user_form.errors)  # Print user form errors in the console
+            print(profile_form.errors)  # Print profile form errors in the console
+        
+    context = {"user_form": user_form, "profile_form": profile_form}
     return render(request, "DiaryApp/profile.html", context)
     
     

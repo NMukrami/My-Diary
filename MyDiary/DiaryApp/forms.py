@@ -21,7 +21,7 @@ class CreateUserForm(UserCreationForm):
     class Meta:
         model = User
         fields = ["first_name", "last_name", "email", "username", "password1", "password2",]
-# tambah last name and first name
+
 
 class UpdateUserForm(forms.ModelForm):
     password = None
@@ -36,8 +36,8 @@ class CreateLoginForm(AuthenticationForm):
     password = forms.CharField(widget=PasswordInput())
 
 class UpdateProfileForm(forms.ModelForm):
-    profile_pictute = forms.ImageField(widget=forms.FileInput(attrs={"class": "form-control-file"}))
+    profile_picture = forms.ImageField( widget=forms.FileInput(attrs={"class": "form-control-file"}))
 
     class Meta:
         model = Profile
-        fields = ["profile_pictute"]
+        fields = ["profile_picture",]
